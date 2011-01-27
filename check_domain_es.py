@@ -29,7 +29,6 @@ from datetime import datetime, date, time
 
 VER='1.0.4'
 EXPR='Expiraci&oacute;n:'
-MONTHS = {'Jan': 1, 'Feb': 2, 'Mar': 3, 'Apr': 4, 'May': 5, 'Jun': 6, 'Jul': 7, 'Aug': 8, 'Sep': 9, 'Oct': 10, 'Nov': 11, 'Dic': 12}
 STATE_CRITICAL=2
 STATE_UNKNOWN=3
 STATE_WARNING=1
