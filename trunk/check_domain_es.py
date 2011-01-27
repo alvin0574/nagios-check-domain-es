@@ -128,10 +128,9 @@ def main(argv):
       position_inic = position_a + len(EXPR) + position_inic + len("<td class='a'>")
 
       position_fin = t.contents[position_inic:].find('</td>') + position_inic
-
-      day, month, year = t.contents[position_inic:position_fin].split('-')
-      expdate = datetime.combine(date(int(year), int(MONTHS['%s' % month]), int(day)), time(0, 0))
+      expdate = datetime.strptime(t.contents[position_inic:position_fin], "%d-%b-%Y")
       today = datetime.now()
+
       diff = (expdate - today).days
 
     if not diff == -1:
