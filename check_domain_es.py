@@ -123,7 +123,7 @@ def main(argv):
     if t.contents.find("I'm sorry, domain is unavaible.") == -1:
 
       position_a = t.contents.find(EXPR)
-      position_inic = t.contents[position_a+len(EXPR):].find("<td class=\"a\">")
+      position_inic = t.contents[position_a+len(EXPR):].find("<td class")
       position_inic = position_a + len(EXPR) + position_inic + len("<td class='a'>")
 
       position_fin = t.contents[position_inic:].find('</td>') + position_inic
