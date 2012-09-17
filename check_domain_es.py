@@ -13,12 +13,14 @@
 #
 #
 # Changelog:
-#	- 12/01/11 v1.0.4: Whois webpage changed
-#		- centrored.es added captchap protection.
-#	- 07/04/10 v1.0.2: Whois webpage changed
-#		- whs.es stopped to respond. It was changed to www.centrored.com
-#	- 02/03/10 v1.0.1: New feature
-#		- Response controller for "I'm sorry, domain is unavaible." response.
+#       - 17/09/12 v1.0.6: Checks availability for domains
+#               - Returns "UNKNOW - Domain is not registered yet" if domains is avaible.
+#       - 12/01/11 v1.0.4: Whois webpage changed
+#               - centrored.es added captchap protection.
+#       - 07/04/10 v1.0.2: Whois webpage changed
+#               - whs.es stopped to respond. It was changed to www.centrored.com
+#       - 02/03/10 v1.0.1: New feature
+#               - Response controller for "I'm sorry, domain is unavaible." response.
 # vi:ts=4:et
 # $Id: check_domain.py,v 1.0 2009/12/03 11:09:11 mfx Exp $
 ########################################
@@ -120,6 +122,10 @@ def main(argv):
     c.perform()
     c.close()
 
+    if t.contents.find("No match for domain") > 1:
+      print "UNKNOW - Domain is not registered yet" 
+      sys.exit(STATE_UNKNOWN)
+
     if t.contents.find("I'm sorry, domain is unavaible.") == -1:
 
       position_a = t.contents.find(EXPR)
@@ -147,7 +153,7 @@ def main(argv):
         sys.exit(STATE_OK)
 
     else:
-        print "UNKNOW - Expiration date cannot be checked." 
+        print "UNKNOW - Expiration date cannot be checked" 
         sys.exit(STATE_UNKNOWN)
     
 if __name__ == "__main__":
